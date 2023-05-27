@@ -16,11 +16,12 @@ WORKDIR /appp
 COPY --from=BASE /appp/node_modules ./node_modules
 COPY . .
 RUN apk add --no-cache git curl \
-    && yarn build \
+    && curl -sf https://gobinaries.com/tj/node-prune | sh \
+    && apk del curl
+RUN  yarn build \
     && rm -rf node_modules \
     && yarn install --production --frozen-lockfile --ignore-scripts --prefer-offline \
     && node-prune 
-#tool down size 
 
 
 # Build production
