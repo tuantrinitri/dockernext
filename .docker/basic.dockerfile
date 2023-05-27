@@ -1,5 +1,5 @@
 FROM node:16-alpine
-LABEL author="ductnn <ductn53@gmail.com>"
+LABEL author="tuantrinitri <quoctuanit.282@gmail.com>"
 
 WORKDIR /appp
 

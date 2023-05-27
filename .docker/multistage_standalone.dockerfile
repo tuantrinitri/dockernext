@@ -4,7 +4,7 @@
 
 # Build BASE
 FROM node:16-alpine as BASE
-LABEL author="ductnn"
+LABEL author="tuantrinitri"
 
 WORKDIR /app
 COPY package.json yarn.lock ./
@@ -15,7 +15,7 @@ RUN apk add --no-cache git \
 
 # Build Image
 FROM ductn4/node:16-alpine AS BUILD
-LABEL author="ductnn"
+LABEL author="tuantrinitri"
 
 WORKDIR /app
 COPY --from=BASE /app/node_modules ./node_modules
@@ -23,13 +23,12 @@ COPY . .
 RUN apk add --no-cache git curl \
     && yarn build \
     && cd .next/standalone \
-    # Follow https://github.com/ductnn/Dockerfile/blob/master/nodejs/node/16/alpine/Dockerfile
     && node-prune
 
 
 # Build production
 FROM node:16-alpine AS PRODUCTION
-LABEL author="ductnn"
+LABEL author="tuantrinitri"
 
 WORKDIR /app
 

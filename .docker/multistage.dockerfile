@@ -1,6 +1,6 @@
 # Build BASE
 FROM node:16-alpine as BASE
-LABEL author="ductnn <ductn53@gmail.com>"
+LABEL author="tuantrinitri <quoctuanit.282@gmail.com>"
 
 WORKDIR /appp
 COPY package.json yarn.lock ./
@@ -10,7 +10,7 @@ RUN apk add --no-cache git \
 
 # Build Image
 FROM ductn4/node:16-alpine AS BUILD
-LABEL author="ductnn <ductn53@gmail.com>"
+LABEL author="tuantrinitri <quoctuanit.282@gmail.com>"
 
 WORKDIR /appp
 COPY --from=BASE /appp/node_modules ./node_modules
@@ -19,13 +19,12 @@ RUN apk add --no-cache git curl \
     && yarn build \
     && rm -rf node_modules \
     && yarn install --production --frozen-lockfile --ignore-scripts --prefer-offline \
-    # Follow https://github.com/ductnn/Dockerfile/blob/master/nodejs/node/16/alpine/Dockerfile
     && node-prune
 
 
 # Build production
 FROM node:16-alpine AS PRODUCTION
-LABEL author="ductnn <ductn53@gmail.com>"
+LABEL author="tuantrinitri <quoctuanit.282@gmail.com>"
 
 WORKDIR /appp
 
