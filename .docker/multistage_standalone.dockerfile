@@ -14,7 +14,7 @@ RUN apk add --no-cache git \
 
 
 # Build Image
-FROM ductn4/node:16-alpine AS BUILD
+FROM node:16-alpine AS BUILD
 LABEL author="tuantrinitri"
 
 WORKDIR /app

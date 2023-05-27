@@ -9,7 +9,7 @@ RUN apk add --no-cache git \
     && yarn cache clean
 
 # Build Image
-FROM ductn4/node:16-alpine AS BUILD
+FROM node:16-alpine AS BUILD
 LABEL author="tuantrinitri <quoctuanit.282@gmail.com>"
 
 WORKDIR /appp
@@ -19,7 +19,8 @@ RUN apk add --no-cache git curl \
     && yarn build \
     && rm -rf node_modules \
     && yarn install --production --frozen-lockfile --ignore-scripts --prefer-offline \
-    && node-prune
+    && node-prune 
+#tool down size 
 
 
 # Build production
